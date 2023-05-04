@@ -43,7 +43,7 @@ def collecting_screen():
     global menu, enter, results, oled, ppi_list
     countdown(5)
     collecting_data_design()
-    received_data = collect_data(30)
+    received_data = collect_data(90)
     results = received_data[0]
     ppi_list = received_data[1]
     print(ppi_list)
