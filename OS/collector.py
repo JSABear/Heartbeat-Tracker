@@ -82,7 +82,7 @@ def collect_data(run_time):
             avg_samples.get()
             thres_min = min(samples.data)
             thres_max = max(samples.data)
-            threshold = thres_max -(thres_max - thres_min ) * 0.35
+            threshold = thres_max -(thres_max - thres_min ) * 0.25
         
         if avg > threshold and beats == False:
             beats = True
