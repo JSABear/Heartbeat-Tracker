@@ -6,6 +6,7 @@ from collector import collect_data, bpm_calc, make_ppi
 from wifi_connect import connect_wifi, ask_wifi
 import network
 from analysis import kubios_call, kubios_backup
+from db_handler import send_data
 
 main_3_3v = Pin(1, Pin.IN)
 alt_3_3v = Pin(0, Pin.IN)
@@ -43,7 +44,7 @@ def collecting_screen():
     global menu, enter, results, oled, ppi_list
     countdown(5)
     collecting_data_design()
-    received_data = collect_data(30)
+    received_data = collect_data(60)
     results = received_data[0]
     ppi_list = received_data[1]
     print(ppi_list)
@@ -60,8 +61,9 @@ def analyzing_screen():
     
     if len(ppi_list) > 10:
         analyzed_kubios = kubios_call(ppi_list)
+        send_data(results, analyzed_kubios[0], analyzed_kubios[1])
     analyzed_local = kubios_backup(ppi_list)
-    
+    ppi_list = []
     enter = True
     menu = 4
 
