@@ -28,6 +28,8 @@ enter = True
 ppi_list = [1000]
 bpm_avg = 0
 
+time.sleep(0.25)
+
 def make_ppi():
     global ppi, ppi_list
     bpm = 0
@@ -42,7 +44,7 @@ def bpm_calc():
     
     if len(l) > 2:
         ppi = l[-1] - l[-2]
-        if ppi > 500 and ppi < 1500:
+        if ppi > 400 and ppi < 1700:
             if ppi != ppi_list[-1]:
                 ppi_list.append(ppi)
                 bpm = 60/(ppi/1000) # equation to determine bpm 
@@ -80,7 +82,7 @@ def collect_data(run_time):
             avg_samples.get()
             thres_min = min(samples.data)
             thres_max = max(samples.data)
-            threshold = thres_max -(thres_max - thres_min ) * 0.25
+            threshold = thres_max -(thres_max - thres_min ) * 0.35
         
         if avg > threshold and beats == False:
             beats = True
